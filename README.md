@@ -44,7 +44,7 @@ example: {TV: "456789",AV: "123456",DISC:"987654"}
 
 In config.html simply create your new hub and open the page in your browser. It will list your activities and devices commands.
 
-![enter image description here](test) 
+ ![config.html](https://github.com/teltip/harmony_remote/blob/master/config.PNG) 
 
 # Web app file structure
 
