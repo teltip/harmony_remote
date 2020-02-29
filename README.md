@@ -24,7 +24,7 @@ The simplest way to do it is using [curl](https://curl.haxx.se/download.html)  a
 
 you should get the following response, where **activeRemoteId** is your hubId (eg: **0000007**)
 
-    {"id":1,"msg":"OK","data":{"email":"yourname@domain.com","username":"yourname@domain.com","activeRemoteId":123456789,"discoveryServer":"http:\/\/svcs.myharmony.com\/Discovery\/Discovery.svc","se":true,"susChannel":"Production","mode":3,"accountId":"123456"},"code":"200"}
+    {"id":1,"msg":"OK","data":{"email":"yourname@domain.com","username":"yourname@domain.com","activeRemoteId":0000007,"discoveryServer":"http:\/\/svcs.myharmony.com\/Discovery\/Discovery.svc","se":true,"susChannel":"Production","mode":3,"accountId":"123456"},"code":"200"}
 
 # Retrieve activities ids and devices commands
 
