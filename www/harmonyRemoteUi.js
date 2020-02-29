@@ -98,7 +98,8 @@ writeButton: function(selector,hub,device,command,icon,iconclass="regular"){
 	if (command) { 		//test command, since can be empty for blank button or new line
 		if (command.toUpperCase().includes("VOLUME") || command.toUpperCase().includes("DIRECTION")) { //if volume or direction command, makes the action holdable
 			actions="onpointerdown=\""+hub.label+".holdStart('"+device+"','"+command+"');\""+
-					" onpointerup=\""+hub.label+".holdEnd('"+device+"','"+command+"');\"";
+					" onpointerup=\""+hub.label+".holdEnd('"+device+"','"+command+"');\""+
+					" onpointerleave=\""+hub.label+".holdEnd('"+device+"','"+command+"');\"";
 		}
 		else {
 			actions="onclick=\""+hub.label+".sendCommand('"+device+"','"+command+"')\""; //Default action on click, send the command once (press)

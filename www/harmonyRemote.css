@@ -88,7 +88,7 @@ body {
 */
 #activitiesHeader {
 	border: 0px solid red;
-	min-height: 7rem;
+	min-height: 6rem;
 }
 
 .activitiesHeaderOn {
@@ -110,7 +110,7 @@ body {
 	opacity:0.95;
 	background-color:#303030;
 	overflow-y: hidden;
-	border: 0px solid red;
+	border: 0px solid green;
 	height:0;
 	width:100%;
 	transition: 0.3s;
@@ -215,26 +215,29 @@ body {
 */	
 #remote>div {
 	position:absolute;
-	top:8rem;
+	top:8%;
 	left:0;
 	width:100%;
-	height:90%;
+	height:92%;
 	transition-duration: 0.2s;
 }
 
 #remote>div.active {
 	left:0px;
 	border: 0px solid #ffff00;
+	overflow:auto;
 }
 
 #remote>div.thrownLeftOne {
 	left:-70rem;
-	border: 0px solid #00ffff;
+	border: 0px solid #ff00ff;
+	overflow:hidden;
 }
+
 #remote>div.thrownRightOne {
 	left:70rem;
 	border: 0px solid #00ffff;
-	
+	overflow:hidden;
 }
 
 
