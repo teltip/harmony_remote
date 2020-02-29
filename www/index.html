@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Harmony Remote</title>
+	<meta name="viewport" content="user-scalable=no">
+	<link rel="icon" href="./res/pwa/favicon.ico" />
+	<link rel=manifest href="./res/pwa/manifest.json">
+		
+	<script src="./res/lib/jquery-3.4.1.min.js"></script>
+	<script src="./res/lib/jquery.touchSwipe.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+	<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="./harmonyRemote.css">
+	<script src="./harmonyRemote.js"></script>
+	<script src="./harmonyRemoteUi.js"></script>
+</head>
+
+
+<body>
+<script>
+	//setup new hub:
+	//objname=new harmonyHub(objname,IP,port,hubId,object_of_devices_translation)
+	h1=new harmonyHub("h1","192.168.1.10",8088,0000007,{TV: "40438232",AV: "40438231",LED:"40438234",DISC:"40438233"});
+	
+	//name space aliasing
+	const ui = harmonyRemote.ui;
+
+	//on document.ready functions calls
+	$(function() { 
+		ui.jqueryEventListener(); //start jQuery listeners for UI
+		h1.connect(); //connect Harmony websocket
+	});
+</script>
+
+
+<div class="activityStarting">
+	<div class="nb-spinner"></div>
+	<div class="activityStartingLabel">ACTIVITY STARTING</div>
+</div>
+
+<div id="activitiesHeader"></div>
+<div id="activitiesIcons"></div>
+	
+<div id="remote"></div>
+
+
+<script>
+	ui.writeActivityIcon(h1,"-1","ic:sharp-power-settings-new","");
+	ui.writeActivityIcon(h1,"89197812","cib:chromecast","CHROMECAST");
+	ui.writeActivityIcon(h1,"89198145","mdi:movie-open-outline","NAS MOVIE");
+	ui.writeActivityIcon(h1,"89217316","jam:disc","CD");
+	ui.writeActivityIcon(h1,"89217333","mdi:disc-player","DVD");
+	ui.writeActivityIcon(h1,"89241438","ic:round-computer","PC");
+	ui.writeActivityIcon(h1,"89371627","ic:baseline-music-note","IRADIO");
+	ui.writeActivityIcon(h1,"89312083","bx:bx-tv","TV");
+	ui.writeActivityIcon(h1,"89317804","zmdi:youtube","YOUTUBE");
+</script>
+
+<script src="./remoteDiscPlayer.js"></script>
+<script src="./remoteAv.js"></script>
+<script src="./remoteSmart.js"></script>
+<script src="./remoteTv.js"></script>
+<script src="./remoteLight.js"></script>
+
+</body>
+</html>

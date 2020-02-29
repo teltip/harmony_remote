@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Harmony Remote</title>
+	<link rel="icon" href="./res/pwa/favicon.ico" />
+	<link rel=manifest href="./res/pwa/manifest.json">
+	
+	<script src="./res/lib/jquery-3.4.1.min.js"></script>
+	
+	<script src="./harmonyRemote.js"></script>
+	<script src="./harmonyRemoteUi.js"></script>
+</head>
+
+
+<body>
+<a href="./index.html">REMOTE</a>
+<script>
+document.addEventListener('DOMContentLoaded', function(event) {
+	//setup new hub:
+	//objname=new harmonyHub(objname,IP,port,hubId,object_of_devices_translation)
+	h1=new harmonyHub("h1","192.168.1.10",8088,0000007);
+
+	//connect Harmony websocket
+	h1.connect();
+	setTimeout(function(){h1.getInfo();},1000);
+	setTimeout(function(){h1.getConfig();},1000);
+	setTimeout(function(){
+		html_output="";
+		
+		html_output=html_output+"<br /><br /><center><h1>List of your Hub Activities</h1></center>";
+		h1.o_config.activity.forEach(function(activity){
+			html_output=html_output+"<p>"+activity.label+" : "+activity.id+"</p>";
+		});
+
+		html_output=html_output+"<br /><br /><center><h1>List of your Devices Commands</h1></center>";
+		h1.o_config.device.forEach(function(device){
+			html_output=html_output+"<br /><br /><h2>"+device.id+" : "+device.label+"</h2>";
+			//html_output=html_output+"<h1>"+device.type+" - "+device.manufacturer+" - "+device.model+" - "+device.deviceTypeDisplayName+"</h1>";
+			device.controlGroup.forEach(function(cg){ 
+				//html_output=html_output+"<h3>"+cg.name+"</h3>";
+				cg.function.forEach(function(cmd){ 
+					re = /^{"command":"(.*)",\"type/
+					//html_output=html_output+"<p>"+cmd.action.match(re)[1]+" ("+cmd.name+")</p>";
+					html_output=html_output+cmd.action.match(re)[1]+"<br />";
+				});
+			});
+		});
+	$("body").append(html_output);
+	},5000);
+});
+</script>
+
+
+
+</body>
+</html>

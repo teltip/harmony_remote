@@ -1,0 +1,253 @@
+html {
+	font-size:16px;
+	overflow-x:hidden;
+}
+
+body {
+	background-color: #303030;
+	color:#ffffff;
+	font-family: 'Lato', sans-serif;
+	background-image: url(./res/img/body.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+/*
+######################################################################
+#	LOADING PANEL
+######################################################################
+*/
+.activityStarting {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index: 999;
+	opacity:.9;
+	overflow: visible;
+	margin: auto;
+	background-color: #303030;
+	border: 0px solid green;
+	padding-top:40rem;
+}
+
+.activityStartingLabel {
+	text-align: center;
+	font-size: 4rem;
+	padding-top:6rem;
+	animation: blinker 2s linear infinite;
+	border: 0px solid red;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.nb-spinner {
+	position: relative;
+    width: 25rem;
+    height: 25rem;
+    margin: auto;
+    background: transparent;
+    border-top: 1rem solid #b21414;
+    border-right: 2rem solid transparent;
+    border-radius: 50%;
+    -webkit-animation: 1s spin linear infinite;
+    animation: 1s spin linear infinite;
+}
+    
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+          
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/*
+######################################################################
+#	ACTIVITIES PANEL
+######################################################################
+*/
+#activitiesHeader {
+	border: 0px solid red;
+	min-height: 7rem;
+}
+
+.activitiesHeaderOn {
+	background-image: url(./res/pwa/favicon-32x32.png);
+	background-repeat: no-repeat;
+	background-size: 3rem 3rem;
+	background-position: 1.25rem 1.25rem;
+	filter: hue-rotate(120deg) brightness(2);
+}
+
+.activitiesHeaderOff {
+	background-image: url(./res/pwa/favicon-32x32.png);
+	background-repeat: no-repeat;
+	background-size: 3rem 3rem;
+	background-position: 1.25rem 1.25rem;
+}
+
+#activitiesIcons {
+	opacity:0.95;
+	background-color:#303030;
+	overflow-y: hidden;
+	border: 0px solid red;
+	height:0;
+	width:100%;
+	transition: 0.3s;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	color: #cccccc;
+}
+
+#activitiesIcons a {
+	font-size: 3rem;
+	display:block;
+	text-decoration: none;
+	padding-top:2.5rem;
+	padding-left:2.5rem;
+	border-bottom: 0px solid #cccccc;
+}
+
+#activitiesIcons .iconify {
+	font-size:8rem;
+	vertical-align: middle;	
+	width:10rem;
+	padding-right: 3rem;
+}
+.activitiesIconsActive {
+	color:#ffffff;
+	font-weight:bold;
+}
+
+
+/*
+####################################################################
+#	REMOTE PANEL
+####################################################################
+*/
+#remote {
+	text-align:center;
+}
+
+.remoteHeader {
+	position: relative;
+	width: 100%;
+	background-size: auto 2rem;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 0px solid #ffffff;
+}	
+
+.remoteHeaderLabel {
+	position: absolute;
+	width:100%;
+	top:0px;
+	left:0px;
+	font-size:3.5rem;
+	font-weight: bold;
+	border: 0px solid #ffffff;
+}
+
+.remoteContent {
+	width:100%;
+	line-height:6rem;
+	border: 0px solid #00ffff;
+}
+
+.remoteContent a {
+	color: #dddddd;
+	border: 0px solid #ffffff;
+	display: inline-block;
+}
+
+.iconify {
+	border: 0px solid #ffff00;
+}
+
+.remoteContent .regular {
+	font-size:6rem;
+	margin: .25rem;
+	padding: 2.5rem;
+	width: 6.5rem;
+}
+
+.remoteContent .small {
+	font-size:5rem;
+	margin: .25rem;
+	padding: 1rem;
+	width: 4.9rem;
+}
+
+.remoteContent .newRow {
+	clear:both;
+}
+
+.remoteActivitySpecific>div {
+	display: none;
+}
+
+/*
+######################################################################
+#	HORIZONTAL SCROLLING
+######################################################################
+*/	
+#remote>div {
+	position:absolute;
+	top:8rem;
+	left:0;
+	width:100%;
+	height:90%;
+	transition-duration: 0.2s;
+}
+
+#remote>div.active {
+	left:0px;
+	border: 0px solid #ffff00;
+}
+
+#remote>div.thrownLeftOne {
+	left:-70rem;
+	border: 0px solid #00ffff;
+}
+#remote>div.thrownRightOne {
+	left:70rem;
+	border: 0px solid #00ffff;
+	
+}
+
+
+@media (min-device-width:1200px) {
+html {
+	font-size:5px;
+}
+#remote>div.thrownLeftOne {
+	left:-300rem;
+}
+#remote>div.thrownRightOne {
+	left:300rem;
+}
+
+
+}
