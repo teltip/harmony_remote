@@ -10,7 +10,7 @@ This is a **s**imple **w**eb **ap**p that connects directly to your hubs using t
 The proposed implementation here is using jQuery and jQuery TouchSwipe plugin for the user interface but you can of course use it using plain CSS and javascript.
 It also uses iconify for remote buttons icons.
 
-![Drop down](https://github.com/teltip/harmony-remote/blob/master/activities.PNG) ![Remote Disc](https://github.com/teltip/harmony-remote/blob/master/remotedisc.PNG) ![Remote Disc](https://github.com/teltip/harmony-remote/blob/master/remotesmart.PNG) ![Remote Disc](https://github.com/teltip/harmony-remote/blob/master/remotetv.PNG) 
+![Drop down](https://github.com/teltip/harmony_remote/blob/master/activities.PNG) ![Remote Disc](https://github.com/teltip/harmony_remote/blob/master/remotedisc.PNG) ![Remote Disc](https://github.com/teltip/harmony_remote/blob/master/remotesmart.PNG) ![Remote Disc](https://github.com/teltip/harmony_remote/blob/master/remotetv.PNG) 
 
 # Pre-requisite
 
