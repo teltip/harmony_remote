@@ -10,7 +10,7 @@ This is a **s**imple **w**eb **ap**p that connects directly to your hubs using t
 The proposed implementation here is using jQuery and jQuery TouchSwipe plugin for the user interface but you can of course use it using plain CSS and javascript.
 It also uses iconify for remote buttons icons.
 
-![Drop down](https://github.com/teltip/harmony-remote/blob/master/activities.PNG) ![Remote Disc](https://github.com/teltip/harmony-remote/blob/master/remotedisc.PNG) ![Remote Disc](https://github.com/teltip/harmony-remote/blob/master/remotesmart.PNG) ![Remote Disc](https://github.com/teltip/harmony-remote/blob/master/remotetv.PNG) 
+![Drop down](https://github.com/teltip/harmony_remote/blob/master/activities.PNG) ![Remote Disc](https://github.com/teltip/harmony_remote/blob/master/remotedisc.PNG) ![Remote Disc](https://github.com/teltip/harmony_remote/blob/master/remotesmart.PNG) ![Remote Disc](https://github.com/teltip/harmony_remote/blob/master/remotetv.PNG) 
 
 # Pre-requisite
 
@@ -24,7 +24,7 @@ The simplest way to do it is using [curl](https://curl.haxx.se/download.html)  a
 
 you should get the following response, where **activeRemoteId** is your hubId (eg: **0000007**)
 
-    {"id":1,"msg":"OK","data":{"email":"yourname@domain.com","username":"yourname@domain.com","activeRemoteId":123456789,"discoveryServer":"http:\/\/svcs.myharmony.com\/Discovery\/Discovery.svc","se":true,"susChannel":"Production","mode":3,"accountId":"123456"},"code":"200"}
+    {"id":1,"msg":"OK","data":{"email":"yourname@domain.com","username":"yourname@domain.com","activeRemoteId":0000007,"discoveryServer":"http:\/\/svcs.myharmony.com\/Discovery\/Discovery.svc","se":true,"susChannel":"Production","mode":3,"accountId":"123456"},"code":"200"}
 
 # Retrieve activities ids and devices commands
 
