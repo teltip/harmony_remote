@@ -1,6 +1,14 @@
 # Harmony remote swap
 
-This is a simple web page to control your Harmony hub.
+## WHAT
+
+This is a simple webapp using html & javascript to control your Harmony hub.
+
+## WHY
+
+Because I want to have my own custom remotes (buttons, icons, orders, sequences, activities, etc....) which I can not do in the native Logitech Harmony hub app.
+
+## Description
 
 No node.js, no python, no MQTT proxy server, no intermediate server in the middle.
 This is a **s**imple **w**eb **ap**p that connects directly to your hubs using the websockets API exposed by your Harmony hub.
