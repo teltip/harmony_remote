@@ -6,7 +6,7 @@ This is a simple webapp using html & javascript to control your Harmony hub.
 
 ## WHY
 
-Because I want to have my own custom remotes (buttons, icons, orders, sequences, activities, etc....) which I can not do in the native Logitech Harmony hub app.
+Because I wanted to have my own custom remotes (buttons, icons, orders, sequences, activities, etc....) which I can not do in the native Logitech Harmony hub app.
 
 ## Description
 
