@@ -16,6 +16,7 @@ class harmonyHub {
 		this.ws=null;
 		this.sequenceInterCommandDelay=200;
 		this.holdInterval=300;
+		this.vibrateDuration=50;
 		this.o_info=null;
 		this.o_config=null;
 	}
@@ -27,10 +28,15 @@ class harmonyHub {
 			
 			this.ws.onopen = function() {
 				console.log('Socket opened');
-				this.getActivity();  //when connecting retrieving current activity
-				//this.getInfo();  
-				//this.getConfig();
-				
+				this.getActivity();  //when connecting, retrieve current activity
+				/*if (!(this.o_info)) {
+					console.log("Setting up info")
+					this.getInfo();  
+				}*/
+				if (!(this.o_config)) {
+					console.log("Setting up config")
+					this.getConfig();
+				}
 			}.bind(this);
 
 			this.ws.onmessage = function(evt) {
@@ -55,10 +61,10 @@ class harmonyHub {
 		}
 	}
 
-	send(msg,vibrate_duration=50) {
+	send(msg,vibrate_duration=this.vibrateDuration) {
 		console.log("MESSAGE SENT ------------------\>\n"+msg);
 		this.ws.send(msg);
-		window.navigator.vibrate(vibrate_duration);
+        window.navigator.vibrate(vibrate_duration);
 	}
 
 	parse(evt) {
@@ -81,8 +87,8 @@ class harmonyHub {
 		if (!currentActivityId) currentActivityId = activityId;
 		
 		//answer to start activity
-		if (cmd == "harmony.engine?startActivity") {
-			harmonyRemote.ui.showLoading();
+		if (cmd == "vnd.logitech.harmony/vnd.logitech.harmony.engine?startactivity") {
+			
 		}
 		
 		//answer to start activity Finished
@@ -102,13 +108,11 @@ class harmonyHub {
 		//answer to info
 		if (cmd == "vnd.logitech.connect/vnd.logitech.deviceinfo?get") {
 			this.o_info=data.data;
-			console.log(this.o_info);
 		}
 		
 		//answer to config
 		if (cmd == "vnd.logitech.harmony/vnd.logitech.harmony.engine?config") {
 			this.o_config=data.data;
-			console.log(this.o_config);
 		}
 		
 		//remoteActivitySpecific
@@ -129,8 +133,20 @@ class harmonyHub {
 	
 	//start activity, given the id	
 	startActivity(activity_id) {
+		//send the message
 		this.msg="{  \"hubId\": \""+this.hubId+"\",  \"timeout\": 30,  \"hbus\": {    \"cmd\": \"vnd.logitech.harmony/vnd.logitech.harmony.engine?startactivity\",    \"id\": \"0\",    \"params\": {      \"timestamp\":\"0\",      \"activityId\": \""+activity_id+"\"} }}";
 		this.send(this.msg);
+		//then get the label for started activity
+		var _label=null
+		console.log("CALLING LOADING PANE FOR:");
+		this.o_config.activity.forEach(function(a1){
+			if (a1.id==activity_id) {
+				_label=a1.label;
+				console.log(_label);
+			}
+		});
+		//finally call ui.showLoading with label
+		harmonyRemote.ui.showLoading(_label);
 	}
 
 	//send command to a device, status can be press, hold or release

@@ -60,7 +60,10 @@ jqueryEventListener: function(){
 	});
 },
 
-showLoading: function() {
+showLoading: function(lastStartedActivity) {
+	if (lastStartedActivity) {
+		$(".activityStartingLabel").html(lastStartedActivity.toUpperCase());
+	}
 	$(".activityStarting").css("display",""); //show the loading page
 },
 
