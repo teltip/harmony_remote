@@ -24,12 +24,11 @@ body {
 	right:0;
 	bottom:0;
 	z-index: 999;
-	opacity:.9;
+	opacity:.85;
 	overflow: visible;
-	margin: auto;
-	background-color: #303030;
+	background-color: #202020;
 	border: 0px solid green;
-	padding-top:40rem;
+	padding-top:25rem;
 }
 
 .activityStartingLabel {
@@ -166,7 +165,6 @@ body {
 	top:0px;
 	left:0px;
 	font-size:3.5rem;
-	font-weight: bold;
 	border: 0px solid #ffffff;
 }
 
@@ -226,6 +224,7 @@ body {
 	left:0px;
 	border: 0px solid #ffff00;
 	overflow:auto;
+	min-width:60rem; /*prevent buttons row collapsing*/
 }
 
 #remote>div.thrownLeftOne {
@@ -244,6 +243,9 @@ body {
 @media (min-device-width:1200px) {
 html {
 	font-size:5px;
+}
+#remote>div {
+	min-width:60rem;
 }
 #remote>div.thrownLeftOne {
 	left:-300rem;
