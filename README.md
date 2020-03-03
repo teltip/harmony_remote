@@ -2,18 +2,18 @@
 
 ## WHAT
 
-This is a simple webapp using html & javascript to control your Harmony hub.
+This is a webapp to control your Harmony hub. 
 
 ## WHY
 
-Because I wanted to have my own custom remotes (buttons, icons, orders, sequences, activities, etc....) which I can not do in the native Logitech Harmony hub app.
+Because I wanted to have my own custom design for remotes (buttons, icons, orders, sequences, activities, etc....) which I can not do in the native Logitech Harmony hub app.
 
 ## Description
 
 No node.js, no python, no MQTT proxy server, no intermediate server in the middle.
-This is a **s**imple **w**eb **ap**p that connects directly to your hubs using the websockets API exposed by your Harmony hub.
+This is a **s**imple **w**eb **ap**p that connects directly from your phone/pc to your Harmony hubs using websockets.
 
-**It uses only html/css/javascript so it can run on any web server and even locally on your device by simply copying the files.**
+**It uses only html/css/javascript so it can run on any web server and even locally on your device by simply copying the files on your phone, tablet or pc.**
 
 The proposed implementation here is using jQuery and jQuery TouchSwipe plugin for the user interface but you can of course use it using plain CSS and javascript.
 It also uses iconify for remote buttons icons.
