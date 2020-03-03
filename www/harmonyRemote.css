@@ -88,6 +88,7 @@ body {
 #activitiesHeader {
 	border: 0px solid red;
 	min-height: 6rem;
+	font-size:32px;
 }
 
 .activitiesHeaderOn {

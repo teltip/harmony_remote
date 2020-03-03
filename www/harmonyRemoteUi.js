@@ -60,6 +60,10 @@ jqueryEventListener: function(){
 	});
 },
 
+hideLoading: function() {
+	$(".activityStarting").css("display","none"); //show the loading page
+},
+
 showLoading: function(lastStartedActivity) {
 	if (lastStartedActivity) {
 		$(".activityStartingLabel").html(lastStartedActivity.toUpperCase());
@@ -73,7 +77,7 @@ remoteActivitySpecificControl: function(currentActivityId) {
 },
 
 startActivityFinished: function(activityId){
-	$(".activityStarting").css("display","none"); //hide the loading page
+	this.hideLoading(); //hide the loading page
 	if (activityId=="-1") {
 		$("#activitiesHeader").addClass("activitiesHeaderOff").removeClass("activitiesHeaderOn");
 	}
@@ -84,17 +88,22 @@ startActivityFinished: function(activityId){
 	$("a#"+activityId+" .iconify , a#"+activityId).addClass("activitiesIconsActive");
 },
 
-getCurrentActivity: function(currentActivityId){
+setActivityHeader: function(currentActivityId){
 	$(".activityStarting").css("display","none"); //hide the loading page
 	if (currentActivityId=="-1") {
-		$("#activitiesHeader").addClass("activitiesHeaderOff").removeClass("activitiesHeaderOn");
+		$("#activitiesHeader").addClass("activitiesHeaderOff").removeClass("activitiesHeaderOn").html("");
+	}
+	else if (currentActivityId=="offline") {
+		$("#activitiesHeader").html("OFFLINE").removeClass("activitiesHeaderOff").removeClass("activitiesHeaderOn");
 	}
 	else {
-		$("#activitiesHeader").addClass("activitiesHeaderOn").removeClass("activitiesHeaderOff");
+		$("#activitiesHeader").addClass("activitiesHeaderOn").removeClass("activitiesHeaderOff").html("");
 	}
 	$("#activitiesIcons>a .iconify, #activitiesIcons>a").removeClass("activitiesIconsActive");
 	$("a#"+currentActivityId+" .iconify , a#"+currentActivityId).addClass("activitiesIconsActive");
 },
+
+
 			
 writeButton: function(selector,hub,device,command,icon,iconclass="regular"){
 	//set button js actions

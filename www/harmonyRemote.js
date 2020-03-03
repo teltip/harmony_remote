@@ -19,6 +19,7 @@ class harmonyHub {
 		this.vibrateDuration=50;
 		this.o_info=null;
 		this.o_config=null;
+		this.activityInitiator=0;
 	}
 
 	connect() {
@@ -40,13 +41,15 @@ class harmonyHub {
 			}.bind(this);
 
 			this.ws.onmessage = function(evt) {
-				console.log('MESSAGE RECEIVED <----------------\n', evt.data);
+				//console.log('MESSAGE RECEIVED <----------------\n', evt.data);
 				this.parse(evt);
 			}.bind(this);
 			
 			this.ws.onerror = function(err) {
 				console.error('Socket encountered error: ', err.message, 'Closing socket');
-				this.ws.close();
+				//this.ws.close();
+				harmonyRemote.ui.hideLoading();
+				harmonyRemote.ui.setActivityHeader("offline");
 			}.bind(this);
 
 			this.ws.onclose = function(evt) { 
@@ -62,7 +65,7 @@ class harmonyHub {
 	}
 
 	send(msg,vibrate_duration=this.vibrateDuration) {
-		console.log("MESSAGE SENT ------------------\>\n"+msg);
+		//console.log("MESSAGE SENT ------------------\>\n"+msg);
 		this.ws.send(msg);
         window.navigator.vibrate(vibrate_duration);
 	}
@@ -86,23 +89,37 @@ class harmonyHub {
 		//set currentActivityId if starting an activity
 		if (!currentActivityId) currentActivityId = activityId;
 		
-		//answer to start activity
+		//answer to start activity. 
 		if (cmd == "vnd.logitech.harmony/vnd.logitech.harmony.engine?startactivity") {
-			
+	
+		}
+		
+		//answer to connect.stateDigest?notify (multi device ui sync)
+		if (type == "connect.stateDigest?notify") {
+			if (data.data.activityId != data.data.runningActivityList && this.activityInitiator==0) {
+				var _label=this.getActivityLabelFromId(data.data.activityId);
+				//harmonyRemote.ui.showLoading("STARTING "+_label+"<br />FROM OTHER DEVICE");
+				harmonyRemote.ui.showLoading(_label+" (REMOTE)");
+			}
+			if (data.data.activityId == -1 && data.data.runningActivityList=="") {
+				harmonyRemote.ui.hideLoading();
+			}
 		}
 		
 		//answer to start activity Finished
 		if (type == "harmony.engine?startActivityFinished") {
 			if (errorCode == "200") {
 				harmonyRemote.ui.startActivityFinished(activityId);
+				this.activityInitiator=0;
 			} else {
 				 alert("Failed to start activity "+activityId);
+				 harmonyRemote.ui.hideLoading();
 			}
 		}
 		
 		//answer to current activity
 		if (cmd == "vnd.logitech.harmony/vnd.logitech.harmony.engine?getCurrentActivity") {
-			harmonyRemote.ui.getCurrentActivity(currentActivityId);
+			harmonyRemote.ui.setActivityHeader(currentActivityId);
 		}
 		
 		//answer to info
@@ -136,15 +153,10 @@ class harmonyHub {
 		//send the message
 		this.msg="{  \"hubId\": \""+this.hubId+"\",  \"timeout\": 30,  \"hbus\": {    \"cmd\": \"vnd.logitech.harmony/vnd.logitech.harmony.engine?startactivity\",    \"id\": \"0\",    \"params\": {      \"timestamp\":\"0\",      \"activityId\": \""+activity_id+"\"} }}";
 		this.send(this.msg);
+		this.activityInitiator=1;
 		//then get the label for started activity
-		var _label=null
 		console.log("CALLING LOADING PANE FOR:");
-		this.o_config.activity.forEach(function(a1){
-			if (a1.id==activity_id) {
-				_label=a1.label;
-				console.log(_label);
-			}
-		});
+		var _label=this.getActivityLabelFromId(activity_id);
 		//finally call ui.showLoading with label
 		harmonyRemote.ui.showLoading(_label);
 	}
@@ -161,9 +173,20 @@ class harmonyHub {
 		this.msg="{\"hubId\":\""+this.hubId+"\",\"hbus\":{\"cmd\":\"vnd.logitech.harmony/vnd.logitech.harmony.engine?getCurrentActivity\",\"id\":\"0\",\"params\":{}}}";
 		this.send(this.msg,0);
 	}
-
-	sendSequence(sequence) {
+	
+	//get activity label from activityId in config from hub
+	getActivityLabelFromId(activityId) {
+		var _label=null
+		this.o_config.activity.forEach(function(a1){
+			if (a1.id==activityId) {
+				_label=a1.label;
+				console.log(_label);
+			}
+		});
+		return _label;
+	}
 		
+	sendSequence(sequence) {
 		var default_timeout=this.sequenceInterCommandDelay;
 		var commands_array=sequence.split(";");
 
