@@ -2,11 +2,13 @@
 
 ## WHAT
 
-This is a webapp to control your Harmony hub. 
+A webapp to control your Harmony hub from your phone, tablet and PC.
 
 ## WHY
 
 Because I wanted to have my own custom design for remotes (buttons, icons, orders, sequences, activities, etc....) which I can not do in the native Logitech Harmony hub app.
+Moreover I have now a unified interface to control the Hubs from my PC.
+
 
 ## Description
 
